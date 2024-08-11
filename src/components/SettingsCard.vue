@@ -2,6 +2,7 @@
 import { useStore } from 'vuex';
 import { computed, onMounted } from 'vue';
 import SettingsCardOption from './SettingsCardOption.vue';
+import SettingsCardButton from './SettingsCardButton.vue';
 import { SET_CATEGORIES, SET_DIFFICULTIES, SET_NUMBER_OF_QUESTIONS } from '../store/types';
 
 const store = useStore()
@@ -32,18 +33,17 @@ function setNumberOfQuestions(numberOfQuestions) {
 
 function selectDifficulty(difficulty) {
     difficulties.includes(difficulty) ? difficulties = difficulties.filter(diff => diff !== difficulty) : difficulties.push(difficulty)
-    console.log(difficulties)
 }
 
-function selectCategories(category) {
-    difficulties.includes(category) ? categories = categories.filter(cat => cat !== category) : difficulties.push(category)
+function selectCategory(category) {
+    categories.includes(category) ? categories = categories.filter(cat => cat !== category) : categories.push(category)
 }
 
-function setDifficulties(difficulties) {
+function setDifficulties() {
     store.commit(SET_DIFFICULTIES, difficulties)
 }
 
-function setCategories(categories) {
+function setCategories() {
     store.commit(SET_CATEGORIES, categories)
 }
 </script>
@@ -64,6 +64,7 @@ function setCategories(categories) {
                 <SettingsCardOption v-for="difficultyOption in difficultyOptions" @send-setting="selectDifficulty"
                     :setting-option=difficultyOption />
             </div>
+            <SettingsCardButton @confirm-setting="setDifficulties" />
         </div>
         <div v-else-if="isNumberOfQuestionsSet && isDifficultiesSet && !isCategoriesSet">
             <div class="setting-title">Select the categories you want</div>
@@ -71,6 +72,7 @@ function setCategories(categories) {
                 <SettingsCardOption v-for="categoryOption in categoryOptions" @send-setting="selectCategory"
                     :setting-option=categoryOption />
             </div>
+            <SettingsCardButton @confirm-setting="setCategories" />
         </div>
     </div>
 </template>
