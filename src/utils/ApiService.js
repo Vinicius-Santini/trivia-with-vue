@@ -14,7 +14,3 @@ export const getRandomQuestions = async (params) => {
         console.error(error);
     }
 }
-
-function concatSettings(...settings) {
-    return settings.join('')
-}

@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
 import SettingsCard from '../components/SettingsCard.vue'
 import QuestionCard from '../components/QuestionCard.vue'
@@ -8,20 +8,16 @@ import QuestionCard from '../components/QuestionCard.vue'
 
 const store = useStore()
 
-let isNumberOfQuestionsSet = computed(() => store.getters.isNumberOfQuestionsSet)
-let isDifficultiesSet = computed(() => store.getters.isDifficultiesSet)
-let isCategoriesSet = computed(() => store.getters.isCategoriesSet)
+const isLimitSet = computed(() => store.getters.isLimitSet)
+const isDifficultiesSet = computed(() => store.getters.isDifficultiesSet)
+const isCategoriesSet = computed(() => store.getters.isCategoriesSet)
+
 </script>
 
 <template>
     <div class="home-wrapper">
-        <QuestionCard v-if="isNumberOfQuestionsSet && isDifficultiesSet && isCategoriesSet" />
-        <SettingsCard v-else />
+        <component :is="isLimitSet && isDifficultiesSet && isCategoriesSet ? QuestionCard : SettingsCard" />
     </div>
 </template>
 
-<style>
-.home-wrapper {
-    height: 100%;
-}
-</style>
+<style></style>

@@ -1,78 +1,78 @@
 <script setup>
+import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { SET_CATEGORIES, SET_DIFFICULTIES, SET_LIMIT } from '../store/types';
+
+import { numberOfQuestionsOptions, difficultyOptions, categoryOptions } from '../utils/SettingsOptions.js';
+
 import SettingsCardOption from './SettingsCardOption.vue';
 import SettingsCardButton from './SettingsCardButton.vue';
-import { SET_CATEGORIES, SET_DIFFICULTIES, SET_NUMBER_OF_QUESTIONS } from '../store/types';
 
 const store = useStore()
-let difficulties = []
-let categories = []
-const numberOfQuestionsOptions = [
-    '5',
-    '10',
-    '15'
-]
-const difficultyOptions = [
-    'easy',
-    'medium',
-    'hard'
-]
-const categoryOptions = [
-    'easy',
-    'medium',
-    'hard'
-]
-let isNumberOfQuestionsSet = computed(() => store.getters.isNumberOfQuestionsSet)
-let isDifficultiesSet = computed(() => store.getters.isDifficultiesSet)
-let isCategoriesSet = computed(() => store.getters.isCategoriesSet)
 
-function setNumberOfQuestions(numberOfQuestions) {
-    store.commit(SET_NUMBER_OF_QUESTIONS, numberOfQuestions)
+const isLimitSet = computed(() => store.getters.isLimitSet)
+const isDifficultiesSet = computed(() => store.getters.isDifficultiesSet)
+const isCategoriesSet = computed(() => store.getters.isCategoriesSet)
+
+let selectedDifficulties = []
+let selectedCategories = []
+let isSelected = false
+
+function setLimit(limit) {
+    store.commit(SET_LIMIT, limit)
 }
 
 function selectDifficulty(difficulty) {
-    difficulties.includes(difficulty) ? difficulties = difficulties.filter(diff => diff !== difficulty) : difficulties.push(difficulty)
+    selectedDifficulties.includes(difficulty) ? selectedDifficulties = selectedDifficulties.filter(diff => diff !== difficulty) : selectedDifficulties.push(difficulty)
 }
 
 function selectCategory(category) {
-    categories.includes(category) ? categories = categories.filter(cat => cat !== category) : categories.push(category)
+    selectedCategories.includes(category) ? selectedCategories = selectedCategories.filter(cat => cat !== category) : selectedCategories.push(category)
 }
 
 function setDifficulties() {
-    store.commit(SET_DIFFICULTIES, difficulties)
+    if (selectedDifficulties.length > 0) {
+
+        store.commit(SET_DIFFICULTIES, selectedDifficulties.toString())
+    }
 }
 
 function setCategories() {
-    store.commit(SET_CATEGORIES, categories)
+    if (selectedDifficulties.length > 0) {
+        store.commit(SET_CATEGORIES, selectedCategories.toString())
+    }
 }
 </script>
 
 <template>
     <div class="card-wrapper">
         <div class="card-title">Settings</div>
-        <div v-if="!isNumberOfQuestionsSet">
+        <div v-if="!isLimitSet">
             <div class="setting-title">Select the number of questions</div>
             <div class="options-wrapper">
-                <SettingsCardOption v-for="numberOfQuestionsOption in numberOfQuestionsOptions"
-                    @send-setting="setNumberOfQuestions" :setting-option=numberOfQuestionsOption />
+                <SettingsCardOption v-for="numberOfQuestionsOption in numberOfQuestionsOptions" @send-setting="setLimit"
+                    :setting-option=numberOfQuestionsOption />
             </div>
         </div>
-        <div v-else-if="isNumberOfQuestionsSet && !isDifficultiesSet">
-            <div class="setting-title">Select difficulty</div>
+        <div v-else-if="isLimitSet && !isDifficultiesSet">
+            <div class="setting-title">Select the difficulties of the questions</div>
             <div class="options-wrapper">
                 <SettingsCardOption v-for="difficultyOption in difficultyOptions" @send-setting="selectDifficulty"
                     :setting-option=difficultyOption />
             </div>
-            <SettingsCardButton @confirm-setting="setDifficulties" />
+            <div class="button-wrapper">
+                <SettingsCardButton @confirm-setting="setDifficulties" />
+            </div>
         </div>
-        <div v-else-if="isNumberOfQuestionsSet && isDifficultiesSet && !isCategoriesSet">
+        <div v-else-if="isLimitSet && isDifficultiesSet && !isCategoriesSet">
             <div class="setting-title">Select the categories you want</div>
-            <div class="options-wrapper">
+            <div class="options-wrapper grid">
                 <SettingsCardOption v-for="categoryOption in categoryOptions" @send-setting="selectCategory"
                     :setting-option=categoryOption />
             </div>
-            <SettingsCardButton @confirm-setting="setCategories" />
+            <div class="button-wrapper">
+                <SettingsCardButton @confirm-setting="setCategories" />
+            </div>
         </div>
     </div>
 </template>
@@ -97,6 +97,11 @@ function setCategories() {
         font-weight: 700;
         text-shadow: 2px 1px 5px rgb(82, 39, 71);
         text-align: center;
+
+        @media (max-width: 1024px) {
+            font-size: 28px;
+            line-height: 48px;
+        }
     }
 
     .options-wrapper {
@@ -111,6 +116,18 @@ function setCategories() {
             flex-direction: column;
             margin-top: 48px;
         }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 220px);
+    }
+
+    .button-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 36px;
     }
 
     @media (max-width: 1024px) {
