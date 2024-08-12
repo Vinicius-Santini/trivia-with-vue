@@ -18,4 +18,8 @@ const emit = defineEmits(['confirm-setting'])
     font-weight: 700;
     box-shadow: 0 0 5px rgba(0, 0, 0, .05), 5px 5px 8px rgba(0, 0, 0, .1);
 }
+
+.button:hover {
+    transform: scale(1.05);
+}
 </style>

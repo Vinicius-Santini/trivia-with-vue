@@ -15,36 +15,15 @@ const emit = defineEmits(['send-setting'])
 </script>
 
 <template>
-    <div @click="emit('send-setting', props.settingOption); toggleSelected()" class="setting-option"
+    <div @click="emit('send-setting', props.settingOption); toggleSelected()" class="option"
         :class="{selected: isSelected}">{{
-        settingOption }}</div>
+        settingOption.replaceAll('_', ' ') }}</div>
 </template>
 
 <style>
-.setting-option {
-    background-color: rgb(236, 241, 245);
-    border-radius: 12px;
-    cursor: pointer;
-    width: 200px;
-    height: 50px;
-    color: black;
-    text-align: center;
-    align-content: center;
-    font-weight: bold;
-    font-size: 24px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .05), 5px 5px 8px rgba(0, 0, 0, .1);
-
-    @media (max-width: 767px) {
-        font-size: 20px;
-
-    }
-
-    @media (max-width: 1024px) {
-        width: 80%
-    }
-}
-
 .selected {
-    background-color: aqua !important;
+    background: linear-gradient(30deg, #2aa, #92d8d8);
+    color: white !important;
+    transform: scale(1.1);
 }
 </style>

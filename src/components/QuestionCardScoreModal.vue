@@ -17,9 +17,10 @@ function reloadPage() {
     <div class="background"></div>
     <div class="modal">
         <div class="modal-wrapper">
-            your score was {{ `${points}/${numberOfQuestions}` }}
+            <div class="score-title">
+                Your score was {{ `${points}/${numberOfQuestions}` }}</div>
+            <button class="button" @click="reloadPage">Play again!</button>
         </div>
-        <button @click="reloadPage">Play again!</button>
     </div>
 </template>
 
@@ -29,7 +30,11 @@ function reloadPage() {
     background-color: rgba(0, 0, 0, 0.308);
     position: absolute;
     height: 110vh;
-    width: 100%
+    width: 100%;
+
+    @media (max-width: 1024px) {
+        height: 152vh;
+    }
 }
 
 .modal {
@@ -48,5 +53,31 @@ function reloadPage() {
     overflow-x: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, .05), 5px 5px 8px rgba(0, 0, 0, .1);
     color: black;
+
+    .modal-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .score-title {
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .button {
+            height: 40px;
+            width: 150px;
+
+        }
+    }
+
+    @media (max-width: 1024px) {
+        max-height: 50%;
+        max-width: 80%;
+    }
 }
 </style>
