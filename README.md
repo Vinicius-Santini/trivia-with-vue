@@ -1,5 +1,5 @@
 # Trivia App usando VueJs
-Este projeto se trata de uma trivia criado usando VueJs, utilizando a COMPOSITION API. O projeto consome uma API externa chamada: [the-trivia-api](https://the-trivia-api.com/)
+Este projeto se trata de uma trivia criada usando VueJs, utilizando a COMPOSITION API. O projeto consome uma API externa chamada: [the-trivia-api](https://the-trivia-api.com/)
 
 #### Como rodar:
 Para rodar este projeto basta utilizar o comando `$ npm install` para instalar as dependencias e o comando `$ npm run dev` para rodá-lo.
