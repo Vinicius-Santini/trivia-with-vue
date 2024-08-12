@@ -4,7 +4,7 @@ Este projeto se trata de uma trivia criado usando VueJs, utilizando a COMPOSITIO
 #### Como rodar:
 Para rodar este projeto basta utilizar o comando `$ npm install` para instalar as dependencias e o comando `$ npm run dev` para rodá-lo.
 
-####Features
+#### Features
 * Na aplicação o usuário pode escolher o número de perguntas que quer responder, os níveis de dificuldade das perguntas que serão feitas e as categorias das perguntas.
 
 * Após escolhidas as perguntas aparecerão uma por uma para o usuário e as opções aparecerão logo abaixo, basta clicar na resposta que acha ser a correta.
