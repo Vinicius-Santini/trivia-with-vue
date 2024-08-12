@@ -1,5 +1,17 @@
-# Vue 3 + Vite
+# Trivia App usando VueJs
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Para rodar este projeto basta utilizar o comando 'npm i' para instalar as dependencias e o comando 'npm run dev para rodá-lo'.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+* O projeto consiste em uma aplicação web feita utilizando Vuejs, se trata de um game de trivia, criado consumindo a TriviaAPI.
+
+* Na aplicação o usuário pode escolher o número de perguntas que quer responder, os níveis de dificuldade das perguntas que serão feitas e as categorias das perguntas.
+
+* Após escolhidas as perguntas aparecerão uma por uma para o usuário e as opções aparecerão logo abaixo, basta clicar na resposta que acha ser a correta.
+
+* Após finalizadas as perguntas a aplicação abrirá um modal mostrando quantos acertos o usuário teve.
+
+### OBS.: Este projeto ainda não está finalizado, pois foi iniciado poucos dias atrás, será finalizado em breve, nele será adicionado um timer animado no momento das perguntas, o css será finalizado em diversos pontos e o código em geral revisado.
+
+
+
+
