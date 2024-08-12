@@ -10,7 +10,7 @@ Para rodar este projeto basta utilizar o comando 'npm i' para instalar as depend
 
 * Após finalizadas as perguntas a aplicação abrirá um modal mostrando quantos acertos o usuário teve.
 
-###OBS.: Este projeto ainda não está finalizado, pois foi iniciado poucos dias atrás, será finalizado em breve, nele será adicionado um timer animado no momento das perguntas, o css será finalizado em diversos pontos e o código em geral revisado.
+### OBS.: Este projeto ainda não está finalizado, pois foi iniciado poucos dias atrás, será finalizado em breve, nele será adicionado um timer animado no momento das perguntas, o css será finalizado em diversos pontos e o código em geral revisado.
 
 
 
