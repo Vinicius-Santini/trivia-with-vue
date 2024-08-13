@@ -39,20 +39,19 @@ function reloadPage() {
 
 .modal {
     z-index: 4;
-    background-color: rgb(250, 247, 247);
+    background: linear-gradient(to top right, #23afaf, #af23af);
     position: absolute;
     padding: 20px;
     border-radius: 8px;
     left: 50%;
     transform: translateX(-50%);
     width: 400px;
-    height: 800px;
+    height: 200px;
     max-width: 100%;
     max-height: 60%;
     overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, .05), 5px 5px 8px rgba(0, 0, 0, .1);
-    color: black;
 
     .modal-wrapper {
         display: flex;
@@ -66,6 +65,11 @@ function reloadPage() {
             margin-bottom: 20px;
             font-size: 32px;
             font-weight: bold;
+            text-shadow: 2px 1px 5px rgb(82, 39, 71);
+
+            @media (max-width: 1024px) {
+                font-size: 28px;
+            }
         }
 
         .button {

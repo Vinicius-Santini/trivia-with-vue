@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex'
 import { shuffleArray } from '../helpers';
 
@@ -21,6 +21,7 @@ function handleAnswer(answer) {
 
 function createAnswerList(incorrectAnswers, correctAnswer) {
     const allAnswers = []
+
     allAnswers.push(...incorrectAnswers)
     allAnswers.push(correctAnswer)
 
